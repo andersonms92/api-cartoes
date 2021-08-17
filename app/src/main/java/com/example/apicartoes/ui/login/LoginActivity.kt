@@ -1,0 +1,113 @@
+package com.example.apicartoes.ui.login
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Intent
+import android.graphics.Color
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import com.example.apicartoes.R
+
+class LoginActivity : AppCompatActivity(), View.OnClickListener{
+
+    private lateinit var btnLogin : Button
+    private lateinit var textForgot : TextView
+    private lateinit var email : EditText
+    private lateinit var senha : EditText
+    private lateinit var frame : FrameLayout
+    private lateinit var title: String
+//    private lateinit var fieldValidator: FieldValidator
+    private lateinit var bundle:Bundle
+
+//    private val dialog = ForgottenPasswordAlertDialog()
+//
+//    val loginViewModel: LoginViewModel by viewModel()
+//    lateinit var sessionManagement: SessionManagement
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_login)
+
+//        fieldValidator = FieldValidator()
+
+        initViews()
+    }
+
+    fun initViews() {
+        btnLogin = findViewById(R.id.buttonLogin)
+        textForgot = findViewById(R.id.textForgot)
+        frame = findViewById(R.id.loadingFrameLaoyut)
+        email = findViewById(R.id.userName)
+        senha = findViewById(R.id.loginPassword)
+        title = getString(R.string.email_alert_title)
+
+        btnLogin.setOnClickListener(this)
+        textForgot.setOnClickListener(this)
+//        sessionManagement = SessionManagement(this)
+        bundle= Bundle()
+    }
+
+    @SuppressLint("ResourceType")
+//    fun login() {
+//
+//        if(loginViewModel.isValid(email.text.toString(),senha.text.toString())){
+//
+//            frame.visibility = View.VISIBLE
+//            val loginDados = LoginModelRequest(email.text.toString().toLowerCase(), senha.text.toString())
+//            loginViewModel.init(loginDados)
+//            loginViewModel.response.observe(this) {
+//                if (it.res) {
+//                    frame.visibility = View.GONE
+//
+//                    sessionManagement.initializeSession(it.user.nickname.toString())
+//                    startActivity(Intent(this,HomeActivity::class.java))
+//
+//                } else {
+//                    frame.visibility = View.GONE
+//                    onAlertDialogLogin(loginViewModel.response.value?.message.toString())
+//                }
+//            }
+//        }else{
+//            loginViewModel.messageValidator.observe(this, Observer {
+//                    message -> onAlertDialogLogin(getString(message))
+//            })
+//            loginViewModel.messageValidator.removeObservers((this as AppCompatActivity?)!!)
+//        }
+//    }
+
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.buttonLogin ->{
+//                login()
+            }
+            R.id.textForgot -> {
+//                dialog.show(supportFragmentManager, R.string.tag_dialog.toString())
+            }
+        }
+    }
+
+    fun onAlertDialogLogin(message:String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.dialog_title)
+        builder.setMessage(message)
+        builder.setPositiveButton(R.string.positive_button){dialog, which ->
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+//        startActivity(Intent(this,LoggedOutActivity::class.java))
+        finish()
+    }
+}
+

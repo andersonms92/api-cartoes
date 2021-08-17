@@ -1,7 +1,8 @@
-package com.example.apicartoes
+package com.example.apicartoes.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.apicartoes.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
