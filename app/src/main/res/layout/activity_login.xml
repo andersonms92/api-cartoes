@@ -13,36 +13,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/userName"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinputlayout_userName"
         android:layout_width="match_parent"
         android:layout_height="@dimen/textBox"
         android:layout_margin="@dimen/marginBox"
-        android:background="@drawable/custom_edit_username"
         android:elevation="@dimen/elevation"
-        android:hint="@string/userName"
-        android:inputType="textEmailAddress"
-        android:paddingStart="@dimen/paddingText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navBarLogin" />
-    <EditText
-        android:id="@+id/loginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/navBarLogin" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinputeditext_userName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/userName"
+            android:background="@drawable/custom_edit_username"
+            android:inputType="textEmailAddress"
+            android:ems="15">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinputlayout_loginPassword"
+        app:passwordToggleEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="@dimen/textBox"
         android:layout_marginStart="@dimen/marginBox"
         android:layout_marginTop="@dimen/topEdit"
         android:layout_marginEnd="@dimen/marginBox"
-        android:background="@drawable/custom_edit_password"
         android:elevation="@dimen/elevation"
-        android:fontFamily="@font/roboto"
-        android:hint="@string/password"
         android:inputType="textPassword"
-        android:paddingStart="@dimen/paddingText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
-    <TextView
+        app:layout_constraintTop_toBottomOf="@+id/textinputlayout_userName" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinputeditext_loginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/password"
+            android:background="@drawable/custom_edit_password"
+            android:inputType="textPassword"
+            android:ems="15">
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textForgot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +75,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonLogin"/>
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/buttonLogin"
@@ -67,6 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginPassword" />
+
     <FrameLayout
         android:id="@+id/loadingFrameLaoyut"
         android:layout_width="match_parent"

@@ -1,24 +1,25 @@
 package com.example.apicartoes.ui.login
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.apicartoes.R
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
-    private lateinit var btnLogin : Button
-    private lateinit var textForgot : TextView
-    private lateinit var email : EditText
-    private lateinit var senha : EditText
+    private lateinit var btnLogin : AppCompatButton
+    private lateinit var textForgot : AppCompatTextView
+    private lateinit var usernameEditText : TextInputEditText
+    private lateinit var senhaEditText : TextInputEditText
+    private lateinit var username : TextInputLayout
+    private lateinit var senha : TextInputLayout
     private lateinit var frame : FrameLayout
     private lateinit var title: String
 //    private lateinit var fieldValidator: FieldValidator
@@ -42,10 +43,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
         btnLogin = findViewById(R.id.buttonLogin)
         textForgot = findViewById(R.id.textForgot)
         frame = findViewById(R.id.loadingFrameLaoyut)
-        email = findViewById(R.id.userName)
-        senha = findViewById(R.id.loginPassword)
+        senhaEditText = findViewById(R.id.textinputeditext_loginPassword)
+        usernameEditText = findViewById(R.id.textinputeditext_userName)
+        username = findViewById(R.id.textinputlayout_userName)
+        senha = findViewById(R.id.textinputlayout_loginPassword)
         title = getString(R.string.email_alert_title)
-
         btnLogin.setOnClickListener(this)
         textForgot.setOnClickListener(this)
 //        sessionManagement = SessionManagement(this)
