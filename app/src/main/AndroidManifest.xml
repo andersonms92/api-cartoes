@@ -11,7 +11,7 @@
         android:theme="@style/Theme.ApiCartoes">
 
         <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".ui.home.HomeActivity"
             android:screenOrientation="portrait"
             android:exported="true"/>
         <activity
