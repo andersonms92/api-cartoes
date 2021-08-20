@@ -112,4 +112,3 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
         finish()
     }
 }
-
