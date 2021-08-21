@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface MockApi {
 
     @GET("/api/v1/login")
-    fun getDataDemandaShadowApi(): Call<List<CartoesModel>>
+    fun getDataDemandaShadowApi(): Call<List<CardModel>>
 }
