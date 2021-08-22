@@ -1,8 +1,6 @@
 package com.example.apicartoes.ui.login
-import android.annotation.SuppressLint
-import android.app.AlertDialog
+
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -19,7 +17,7 @@ import com.example.apicartoes.utils.LoginFieldVerification
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.Executor
 
-class LoginActivity : AppCompatActivity(), View.OnClickListener{
+class LoginActivity : AppCompatActivity(){
 
     val AUTH_SUCCESS = AuthTags.SUCCESS.toString()
     val AUTH_KEY = AuthTags.AUTH.toString()
@@ -40,6 +38,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
         setContentView(R.layout.activity_login)
 
         initViews()
+        onClick()
         verifyAuth()
         initBiometrichAuth()
     }
@@ -96,23 +95,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
             .build()
     }
 
-
-    override fun onClick(v: View) {
-        when(v.id){
-            R.id.buttonLogin ->{
-                initViewModel()
-            }
-            R.id.aciv_biometric_login -> {
-                biometricPrompt.authenticate(biometricPromptInfo)
-            }
+    private fun onClick() {
+        btnLogin.setOnClickListener {
+            initViewModel()
+        }
+        btnBiometricLogin.setOnClickListener {
+            biometricPrompt.authenticate(biometricPromptInfo)
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-//        startActivity(Intent(this,LoggedOutActivity::class.java))
-        finish()
-    }
     private fun initViewModel() {
         viewModel.init(LoginFieldVerification.verifyField(
             userName.text.toString(),
@@ -140,31 +131,4 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
             }
         }
     }
-
-//    fun login() {
-//
-//        if(loginViewModel.isValid(email.text.toString(),senha.text.toString())){
-//
-//            frame.visibility = View.VISIBLE
-//            val loginDados = LoginModelRequest(email.text.toString().toLowerCase(), senha.text.toString())
-//            loginViewModel.init(loginDados)
-//            loginViewModel.response.observe(this) {
-//                if (it.res) {
-//                    frame.visibility = View.GONE
-//
-//                    sessionManagement.initializeSession(it.user.nickname.toString())
-//                    startActivity(Intent(this,HomeActivity::class.java))
-//
-//                } else {
-//                    frame.visibility = View.GONE
-//                    onAlertDialogLogin(loginViewModel.response.value?.message.toString())
-//                }
-//            }
-//        }else{
-//            loginViewModel.messageValidator.observe(this, Observer {
-//                    message -> onAlertDialogLogin(getString(message))
-//            })
-//            loginViewModel.messageValidator.removeObservers((this as AppCompatActivity?)!!)
-//        }
-//    }
 }
