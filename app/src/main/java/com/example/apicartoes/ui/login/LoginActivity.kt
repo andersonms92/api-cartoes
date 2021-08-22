@@ -1,60 +1,146 @@
 package com.example.apicartoes.ui.login
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.example.apicartoes.R
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.example.apicartoes.ui.home.HomeActivity
+import com.example.apicartoes.utils.AuthTags
+import com.example.apicartoes.utils.LoginFieldVerification
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener{
 
-    private lateinit var btnLogin : AppCompatButton
-    private lateinit var textForgot : AppCompatTextView
-    private lateinit var usernameEditText : TextInputEditText
-    private lateinit var senhaEditText : TextInputEditText
-    private lateinit var username : TextInputLayout
-    private lateinit var senha : TextInputLayout
-    private lateinit var frame : FrameLayout
-    private lateinit var title: String
-//    private lateinit var fieldValidator: FieldValidator
-    private lateinit var bundle:Bundle
+    val AUTH_SUCCESS = AuthTags.SUCCESS.toString()
+    val AUTH_KEY = AuthTags.AUTH.toString()
 
-//    private val dialog = ForgottenPasswordAlertDialog()
-//
-//    val loginViewModel: LoginViewModel by viewModel()
-//    lateinit var sessionManagement: SessionManagement
+    private val viewModel by viewModel<LoginViewModel>()
+
+    lateinit var userName: AppCompatEditText
+    lateinit var password: AppCompatEditText
+    lateinit var btnLogin: Button
+    lateinit var btnBiometricLogin: AppCompatImageView
+
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var biometricPromptInfo: BiometricPrompt.PromptInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-//        fieldValidator = FieldValidator()
-
         initViews()
+        verifyAuth()
+        initBiometrichAuth()
     }
 
-    fun initViews() {
+    private fun initViews() {
+        userName = findViewById(R.id.textinputeditext_userName)
+        password = findViewById(R.id.textinputeditext_loginPassword)
         btnLogin = findViewById(R.id.buttonLogin)
-        textForgot = findViewById(R.id.textForgot)
-        frame = findViewById(R.id.loadingFrameLaoyut)
-        senhaEditText = findViewById(R.id.textinputeditext_loginPassword)
-        usernameEditText = findViewById(R.id.textinputeditext_userName)
-        username = findViewById(R.id.textinputlayout_userName)
-        senha = findViewById(R.id.textinputlayout_loginPassword)
-        title = getString(R.string.email_alert_title)
-        btnLogin.setOnClickListener(this)
-        textForgot.setOnClickListener(this)
-//        sessionManagement = SessionManagement(this)
-        bundle= Bundle()
+        btnBiometricLogin = findViewById(R.id.aciv_biometric_login)
     }
 
-    @SuppressLint("ResourceType")
+    private fun verifyAuth() {
+        val extras = intent.extras
+        if (extras != null) {
+            when(extras.get(AUTH_KEY)) {
+                true -> {
+                    btnLogin.visibility = View.GONE
+                }
+                false -> {
+                    btnBiometricLogin.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun initBiometrichAuth() {
+        executor = ContextCompat.getMainExecutor(this)
+        biometricPrompt = BiometricPrompt(this, executor,
+        object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationError(
+                errorCode: Int,
+                errorString: CharSequence) {
+
+                super.onAuthenticationError(errorCode, errorString)
+                btnLogin.visibility = View.VISIBLE
+                btnBiometricLogin.visibility = View.GONE
+            }
+
+            override fun onAuthenticationSucceeded(
+                result: BiometricPrompt.AuthenticationResult) {
+                super.onAuthenticationSucceeded(result)
+                callActivity(AUTH_SUCCESS)
+            }
+
+            override fun onAuthenticationFailed() {
+                super.onAuthenticationFailed()
+                Toast.makeText(applicationContext, "Falha na autenticação", Toast.LENGTH_LONG).show()
+            }
+        })
+
+        biometricPromptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Logar com biometria")
+            .setNegativeButtonText("Logar com e-mail e senha")
+            .build()
+    }
+
+
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.buttonLogin ->{
+                initViewModel()
+            }
+            R.id.aciv_biometric_login -> {
+                biometricPrompt.authenticate(biometricPromptInfo)
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+//        startActivity(Intent(this,LoggedOutActivity::class.java))
+        finish()
+    }
+    private fun initViewModel() {
+        viewModel.init(LoginFieldVerification.verifyField(
+            userName.text.toString(),
+            password.text.toString(),
+            this
+        ))
+
+        viewModel.loginActionView.observe(this, { state ->
+            when(state) {
+                is LoginActionView.LoginSuccess -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                }
+
+                is LoginActionView.LoginError -> {
+                    Toast.makeText(this, state.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun callActivity(activity: String) {
+        when (activity) {
+            AUTH_SUCCESS -> {
+                startActivity(Intent(this, HomeActivity::class.java))
+            }
+        }
+    }
+
 //    fun login() {
 //
 //        if(loginViewModel.isValid(email.text.toString(),senha.text.toString())){
@@ -81,34 +167,4 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener{
 //            loginViewModel.messageValidator.removeObservers((this as AppCompatActivity?)!!)
 //        }
 //    }
-
-    override fun onClick(v: View) {
-        when(v.id){
-            R.id.buttonLogin ->{
-//                login()
-            }
-            R.id.textForgot -> {
-//                dialog.show(supportFragmentManager, R.string.tag_dialog.toString())
-            }
-        }
-    }
-
-    fun onAlertDialogLogin(message:String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(R.string.dialog_title)
-        builder.setMessage(message)
-        builder.setPositiveButton(R.string.positive_button){dialog, which ->
-            dialog.dismiss()
-        }
-
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-//        startActivity(Intent(this,LoggedOutActivity::class.java))
-        finish()
-    }
 }

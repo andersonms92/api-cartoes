@@ -36,7 +36,7 @@ class StatusFireBase (
             ioDispatcher.async {
                 val userLogged = FirebaseAuth.getInstance().currentUser
                 if (userLogged != null){
-                    callbackOnErrorVerifySection.invoke()
+                    callbackOnSuccessVerifySection.invoke()
                 } else {
                     callbackOnErrorVerifySection.invoke()
                 }

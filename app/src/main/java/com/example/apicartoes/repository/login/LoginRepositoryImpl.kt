@@ -6,12 +6,12 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 class LoginRepositoryImpl : LoginRepository {
     override suspend fun loginFireBase(
-        dataLogin: FirebaseModel,
+        login: FirebaseModel,
         callbackSuccess: () -> Unit,
         callbackError: (error: String) -> Unit
     ) {
         FirebaseAuth.getInstance()
-            .signInWithEmailAndPassword(dataLogin.userName, dataLogin.password)
+            .signInWithEmailAndPassword(login.userName, login.password)
             .addOnCompleteListener {
                 when {
                     it.isSuccessful -> {
