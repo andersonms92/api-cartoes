@@ -1,4 +1,4 @@
-package com.example.apicartoes.di.network
+package com.example.apicartoes.di.retrofit
 
 import com.example.apicartoes.data.model.MockApi
 import org.koin.dsl.module
