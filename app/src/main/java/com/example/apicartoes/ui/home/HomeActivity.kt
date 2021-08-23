@@ -18,7 +18,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         initFragment()
-
     }
 
     private fun initFragment() {
@@ -45,7 +44,6 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(this, SplashScreenActivity::class.java))
                     finish()
                 }
-
                 is HomeViewAction.LogoutError -> {
                     Toast.makeText(this, state.error, Toast.LENGTH_SHORT).show()
                 }

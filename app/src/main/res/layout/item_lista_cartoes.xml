@@ -6,35 +6,37 @@
     android:id="@+id/cardView_cartoes"
     android:layout_width="250dp"
     android:layout_height="150dp"
-    android:layout_gravity="center"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="2dp">
+    android:layout_gravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded">
+            android:background="@drawable/rounded"
+            >
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/actv_bank_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="everis"
-                android:textSize="@dimen/text_size_14sp"
-                android:layout_marginTop="@dimen/margin_18dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_70dp"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_marginStart="@dimen/margin_18dp"
+                android:layout_marginEnd="@dimen/margin_18dp"
+                android:src="@drawable/everis"
+                android:textStyle="bold"
+                android:textColor="@color/green"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/actv_card_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/color_6DB958"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="@dimen/margin_40dp"
                 android:layout_marginStart="@dimen/margin_18dp"
                 android:hint="1111 0000 2222 4444"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintTop_toBottomOf="@+id/actv_bank_name"
                 />
 
@@ -43,6 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="000"
+                android:textColor="@color/color_6DB958"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintStart_toEndOf="@+id/actv_card_number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/actv_card_number"
@@ -52,21 +56,22 @@
                 android:id="@+id/actv_text_validate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Validade: "
+                android:textColor="@color/color_6DB958"
                 android:layout_marginStart="@dimen/margin_18dp"
                 app:layout_constraintTop_toBottomOf="@+id/actv_card_number"
-                app:layout_constraintStart_toStartOf="parent"
-
-                />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/actv_card_expiration_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="11/24"
+                android:textColor="@color/color_6DB958"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintStart_toEndOf="@+id/actv_text_validate"
                 app:layout_constraintTop_toTopOf="@id/actv_text_validate"
-
                 android:layout_marginStart="7dp"
                 />
 
@@ -74,6 +79,8 @@
                 android:id="@+id/actv_card_owner_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/color_6DB958"
                 android:hint="Anderson de Matos dos Santos"
                 app:layout_constraintTop_toBottomOf="@id/actv_text_validate"
                 app:layout_constraintStart_toStartOf="parent"

@@ -2,6 +2,7 @@ package com.example.apicartoes.repository.cards
 
 import com.example.apicartoes.data.model.CardModel
 import com.example.apicartoes.data.model.MockApi
+import com.example.apicartoes.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,7 +24,7 @@ class CardRepositoryImpl(
                 if(response.isSuccessful) {
                     onSuccess.invoke(response.body())
                 } else {
-                    onError.invoke("Error")
+                    onError.invoke(Constants.ERROR_MESSAGE)
                 }
             }
 

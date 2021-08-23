@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import com.example.apicartoes.R
 import com.example.apicartoes.ui.home.HomeActivity
 import com.example.apicartoes.utils.AuthTags
+import com.example.apicartoes.utils.Constants
 import com.example.apicartoes.utils.LoginFieldVerification
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.Executor
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity(){
         initViews()
         onClick()
         verifyAuth()
-        initBiometrichAuth()
+        initBiometricAuth()
     }
 
     private fun initViews() {
@@ -64,7 +65,7 @@ class LoginActivity : AppCompatActivity(){
         }
     }
 
-    private fun initBiometrichAuth() {
+    private fun initBiometricAuth() {
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this, executor,
         object : BiometricPrompt.AuthenticationCallback() {
@@ -85,13 +86,13 @@ class LoginActivity : AppCompatActivity(){
 
             override fun onAuthenticationFailed() {
                 super.onAuthenticationFailed()
-                Toast.makeText(applicationContext, "Falha na autenticação", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, Constants.ERROR_AUTENTICATION, Toast.LENGTH_LONG).show()
             }
         })
 
         biometricPromptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Logar com biometria")
-            .setNegativeButtonText("Logar com e-mail e senha")
+            .setTitle(Constants.LOGIN_WITH_BIOMETRIC)
+            .setNegativeButtonText(Constants.LOGIN_WITH_EMAIL_AND_PASSWORD)
             .build()
     }
 

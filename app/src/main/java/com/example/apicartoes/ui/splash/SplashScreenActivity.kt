@@ -21,7 +21,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
             verify()
-        }, 2000)
+        }, 1000)
     }
 
     private fun verify() {

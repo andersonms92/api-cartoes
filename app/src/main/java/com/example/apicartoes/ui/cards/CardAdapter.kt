@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
 import com.example.apicartoes.data.model.CardModel
+import com.google.android.material.tabs.TabLayout
 
 class CardAdapter(
     private val list: List<CardModel>
@@ -41,6 +42,4 @@ class CardAdapter(
 
         }
     }
-
-
 }

@@ -7,9 +7,9 @@ object LoginFieldVerification {
 
     fun verifyField(email: String, password: String, context: Context) : FirebaseModel {
         return if (email.isNotEmpty() && password.isNotEmpty()) {
-            FirebaseModel(email, password, "")
+            FirebaseModel(email, password, Constants.EMPTY)
         } else {
-            FirebaseModel("", "", "Os campos devem ser preenchidos")
+            FirebaseModel(Constants.EMPTY, Constants.EMPTY, Constants.FIELDS_MUST_BE_COMPLETED)
         }
     }
 
