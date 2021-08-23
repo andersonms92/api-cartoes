@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245520370412",
+    "project_id": "apicartoesbeca",
+    "storage_bucket": "apicartoesbeca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245520370412:android:b5bf13193e56c7173ef3c9",
+        "android_client_info": {
+          "package_name": "com.example.apicartoes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245520370412-krnd5l1a2dh0tae46qj7gv17rern83ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCecEZlsukJMLYZNSwkV_oy3Y3hNyQ0ayU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245520370412-krnd5l1a2dh0tae46qj7gv17rern83ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
