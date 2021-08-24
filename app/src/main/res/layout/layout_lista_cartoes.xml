@@ -16,7 +16,6 @@
         android:scrollIndicators="bottom"
         android:scrollbarSize="20dp"
         android:layout_marginTop="@dimen/margin_18dp"
-        android:layout_marginStart="@dimen/margin_18dp"
         android:layout_marginEnd="@dimen/margin_18dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintLeft_toLeftOf="parent"

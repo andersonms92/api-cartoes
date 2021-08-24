@@ -17,19 +17,21 @@ class LoginRepositoryImpl : LoginRepository {
                 when {
                     it.isSuccessful -> {
                         callbackSuccess.invoke()
-                    } else -> {
+                    }
+                    else -> {
                         callbackError.invoke(Constants.ERROR_MESSAGE)
                     }
                 }
-            }.addOnFailureListener {
-                when (it) {
-                    is FirebaseAuthWeakPasswordException -> {
-                        callbackError.invoke(Constants.WRONG_PASSWORD)
-                    }
-                    else -> {
-                        callbackError.invoke(Constants.ERROR_LOGIN)
-                    }
-                }
+//                }.addOnFailureListener {
+//                    when (it) {
+//                        is FirebaseAuthWeakPasswordException -> {
+//                            callbackError.invoke(Constants.WRONG_PASSWORD)
+//                        }
+//                        else -> {
+//                            callbackError.invoke(Constants.ERROR_LOGIN)
+//                        }
+//                    }
+//                }
             }
     }
 }

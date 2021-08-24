@@ -98,8 +98,13 @@ class LoginActivity : AppCompatActivity(){
 
     private fun onClick() {
         btnLogin.setOnClickListener {
-            initViewModel()
+            if(userName.text.toString().isNotEmpty() && password.text.toString().isNotEmpty()) {
+                initViewModel()
+            } else {
+                Toast.makeText(this, Constants.FIELDS_MUST_BE_COMPLETED, Toast.LENGTH_SHORT).show()
+            }
         }
+
         btnBiometricLogin.setOnClickListener {
             biometricPrompt.authenticate(biometricPromptInfo)
         }

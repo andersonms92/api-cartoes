@@ -14,7 +14,7 @@ class CardRepositoryImpl(
         onSuccess: (List<CardModel>?) -> Unit,
         onError: (String) -> Unit
     ) {
-        val returnApi = api.getDataApi()
+        val returnApi = api.getDataCartoes()
 
         returnApi.enqueue(object : Callback<List<CardModel>> {
             override fun onResponse(
