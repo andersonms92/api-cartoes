@@ -4,21 +4,129 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_purchase"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center">
+    android:layout_marginStart="@dimen/margin_10dp"
+    android:layout_marginBottom="@dimen/margin_10dp"
+    android:layout_marginTop="@dimen/margin_18dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_purchase_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Produto: "
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_purchase_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toEndOf="@id/tv_purchase_name"
+            app:layout_constraintTop_toTopOf="@id/tv_purchase_name"
+            android:hint="Cerveja"
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_purchase_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toStartOf="@id/tv_purchase_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_purchase_name"
+            android:text="Valor: "
+            android:fontFamily="@font/roboto_bold"
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/actv_purchase_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_6DB958"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/margin_5dp"
+            app:layout_constraintStart_toEndOf="@id/tv_purchase_value"
+            app:layout_constraintTop_toBottomOf="@+id/actv_purchase_name"
             android:hint="R$ 660,00"
             android:fontFamily="@font/roboto_bold"
             />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_purchase_form_of_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toStartOf="@id/tv_purchase_value"
+            app:layout_constraintTop_toBottomOf="@id/tv_purchase_value"
+            android:text="Forma de pagamento: "
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_purchase_form_of_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toEndOf="@+id/tv_purchase_form_of_payment"
+            app:layout_constraintTop_toBottomOf="@id/actv_purchase_value"
+            android:hint="Crédito"
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_purchase_commerce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toStartOf="@id/tv_purchase_form_of_payment"
+            app:layout_constraintTop_toBottomOf="@id/tv_purchase_form_of_payment"
+            android:text="Loja: "
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_purchase_commerce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toEndOf="@id/tv_purchase_commerce"
+            app:layout_constraintTop_toTopOf="@id/tv_purchase_commerce"
+            android:hint="Casas Bahia"
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_purchase_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toStartOf="@id/tv_purchase_commerce"
+            app:layout_constraintTop_toBottomOf="@id/tv_purchase_commerce"
+            android:text="Descrição: "
+            android:fontFamily="@font/roboto_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_purchase_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_6DB958"
+            app:layout_constraintStart_toEndOf="@id/tv_purchase_description"
+            app:layout_constraintTop_toBottomOf="@id/actv_purchase_commerce"
+            android:hint="Descricao"
+            android:fontFamily="@font/roboto_bold"
+            />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--id-->
+<!--listacartoesId-->
+<!--valor-->
+<!--formaPagamento-->
+<!--loja-->
+<!--descricao-->
+<!--dataCompra-->
+<!--nomeProduto-->

@@ -3,11 +3,12 @@ package com.example.apicartoes.ui.cards
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
 import com.example.apicartoes.data.model.CardModel
-import com.google.android.material.tabs.TabLayout
 
 class CardAdapter(
     private val list: List<CardModel>
@@ -35,10 +36,14 @@ class CardAdapter(
 
         fun bind(cards: CardModel) {
 
-            cardOwnerName.text = cards.name
-            cardNumber.text = cards.cardNumber
-            cardExpirationDate.text = cards.expirationDate
-            cardSecurytiCode.text = cards.code
+                cardOwnerName.text = cards.name
+                cardNumber.text = cards.cardNumber
+                cardExpirationDate.text = cards.expirationDate
+                cardSecurytiCode.text = cards.code
+
+                itemView.setOnClickListener {
+                    Toast.makeText(itemView.context, "teste", Toast.LENGTH_SHORT).show()
+                }
 
         }
     }

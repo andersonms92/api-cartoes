@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
-import com.example.apicartoes.data.model.CardModel
 import com.example.apicartoes.data.model.PurchasesModel
 
 class PurchasesAdapter(
@@ -29,10 +28,26 @@ class PurchasesAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
 
         private val purchaseValue: AppCompatTextView = itemView.findViewById(R.id.actv_purchase_value)
+        private val purchaseName: AppCompatTextView = itemView.findViewById(R.id.actv_purchase_name)
+        private val purchaseDescription: AppCompatTextView = itemView.findViewById(R.id.actv_purchase_description)
+        private val purchaseCommerce: AppCompatTextView = itemView.findViewById(R.id.actv_purchase_commerce)
+        private val purchaseFormOfPayment: AppCompatTextView = itemView.findViewById(R.id.actv_purchase_form_of_payment)
 
         fun bind(purchases: PurchasesModel) {
 
-                    purchaseValue.text = purchases.valor
+            purchaseValue.text = purchases.valor
+            purchaseName.text = purchases.nomeProduto
+           // purchaseDescription.text = purchases.descricao
+            purchaseCommerce.text = purchases.loja
+            purchaseFormOfPayment.text = purchases.formaPagamento
         }
         }
     }
+//<!--id-->
+//<!--listacartoesId-->
+//<!--valor-->
+//<!--formaPagamento-->
+//<!--loja-->
+//<!--descricao-->
+//<!--dataCompra-->
+//<!--nomeProduto-->

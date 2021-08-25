@@ -7,6 +7,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+var purchaseFilter: String = "1"
+
 class PurchasesRepositoryImpl(
     private val api: MockApi
 ) : PurchasesRepository {
@@ -14,7 +16,7 @@ class PurchasesRepositoryImpl(
         onSuccess: (List<PurchasesModel>?) -> Unit,
         onError: (String) -> Unit
     ) {
-        val returnApi = api.getDataCompras()
+        val returnApi = api.getDataCompras(purchaseFilter)
 
         returnApi.enqueue(object : Callback<List<PurchasesModel>> {
             override fun onResponse(

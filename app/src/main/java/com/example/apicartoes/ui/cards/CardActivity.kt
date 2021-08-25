@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
 import com.example.apicartoes.data.model.CardModel
 import com.example.apicartoes.data.model.PurchasesModel
+import com.example.apicartoes.repository.purchases.purchaseFilter
 import com.example.apicartoes.ui.purchases.PurchasesActionView
 import com.example.apicartoes.ui.purchases.PurchasesAdapter
 import com.example.apicartoes.ui.purchases.PurchasesViewModel
@@ -80,12 +81,12 @@ class CardActivity : Fragment() {
         rvCards = view.findViewById(R.id.rv_cartoes_list)
         rvCards.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvCards.adapter = CardAdapter(list)
-
     }
 
     private fun setPurchaseAdapter(view: View, context: Context, list: List<PurchasesModel>) {
         rvPurchases = view.findViewById(R.id.rv_purchases_list)
-        rvPurchases.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvPurchases.layoutManager =
+        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvPurchases.adapter = PurchasesAdapter(list)
-    }
+        }
 }
