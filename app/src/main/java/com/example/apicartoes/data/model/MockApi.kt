@@ -11,6 +11,6 @@ interface MockApi {
     @GET("/api/v1/login/1/listacartoes?idCartao")
     fun getDataCartoes(): Call<List<CardModel>>
 
-    @GET("/api/v1/login/$/listacartoes/$/compras")
-    fun getDataCompras(): Call<List<ComprasModel>>
+    @GET("/api/v1/login/1/listacartoes/1/compras")
+    fun getDataCompras(): Call<List<PurchasesModel>>
 }

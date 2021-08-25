@@ -1,10 +1,10 @@
-package com.example.apicartoes.ui.cards
+package com.example.apicartoes.ui.purchases
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.apicartoes.data.model.CardModel
-import com.example.apicartoes.usecase.cards.CardUseCase
+import com.example.apicartoes.data.model.PurchasesModel
+import com.example.apicartoes.usecase.purchases.PurchasesUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.SupervisorJob
@@ -13,13 +13,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.cancelChildren
 
-sealed class CardActionView {
-    class SuccessCall (val cardList: List<CardModel>?) : CardActionView()
-    class ErrorCall (val error: String) : CardActionView()
+sealed class PurchasesActionView {
+    class SuccessCall (val purchaseList: List<PurchasesModel>?) : PurchasesActionView()
+    class ErrorCall (val error: String) : PurchasesActionView()
 }
 
-class CardViewModel (
-    val useCase: CardUseCase,
+class PurchasesViewModel (
+    val useCase: PurchasesUseCase,
     mainDispatcher: CoroutineDispatcher,
     ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
@@ -28,9 +28,9 @@ class CardViewModel (
     private val mainDispatcher = CoroutineScope(mainDispatcher + supervisorJob)
     private val ioDispatcher = CoroutineScope( ioDispatcher + supervisorJob)
 
-    private val _cardActionView by lazy { MutableLiveData<CardActionView>() }
-    val cardActionView: LiveData<CardActionView>
-        get() = _cardActionView
+    private val _purchaseActionView by lazy { MutableLiveData<PurchasesActionView>() }
+    val purchaseActionView: LiveData<PurchasesActionView>
+        get() = _purchaseActionView
 
     init {
         executeLogin()
@@ -44,17 +44,17 @@ class CardViewModel (
 
     private suspend fun loginUseCase() {
         ioDispatcher.async {
-            return@async useCase.getListCards(::success, ::error)
+            return@async useCase.getPurchaseList(::success, ::error)
         }.await()
     }
 
-    private fun success(cardList: List<CardModel>?) {
-        _cardActionView.postValue(CardActionView.SuccessCall(cardList))
+    private fun success(purchaseList: List<PurchasesModel>?) {
+        _purchaseActionView.postValue(PurchasesActionView.SuccessCall(purchaseList))
         GlobalScope.coroutineContext.cancelChildren()
     }
 
     private fun error(error: String) {
-        _cardActionView.postValue(CardActionView.ErrorCall(error))
+        _purchaseActionView.postValue(PurchasesActionView.ErrorCall(error))
         GlobalScope.coroutineContext.cancelChildren()
     }
 

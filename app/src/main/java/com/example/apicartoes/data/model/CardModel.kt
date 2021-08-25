@@ -8,6 +8,7 @@ data class CardModel(
     val name: String,
     @SerializedName("cardnumber") val cardNumber: String,
     val code: String,
-    val expirationDate: String
+    val expirationDate: String,
+    val purchaseList: List<PurchasesModel>
 )
 

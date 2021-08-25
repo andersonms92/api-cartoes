@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
 import com.example.apicartoes.data.model.CardModel
+import com.example.apicartoes.data.model.PurchasesModel
+import com.example.apicartoes.ui.purchases.PurchasesActionView
+import com.example.apicartoes.ui.purchases.PurchasesAdapter
+import com.example.apicartoes.ui.purchases.PurchasesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CardActivity : Fragment() {
@@ -20,13 +24,15 @@ class CardActivity : Fragment() {
     }
 
     private lateinit var rvCards: RecyclerView
-    private val viewModel by viewModel<CardViewModel>()
+    private lateinit var rvPurchases: RecyclerView
+    private val cardViewModel by viewModel<CardViewModel>()
+    private val purchaseViewModel by viewModel<PurchasesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ) : View? {
-        return inflater.inflate(R.layout.layout_lista_cartoes, container, false)
+        return inflater.inflate(R.layout.layout_card_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,15 +40,16 @@ class CardActivity : Fragment() {
 
         val activity = activity as Context
 
-        initViewModel(view, activity)
+        initCardViewModel(view, activity)
+        initPurchaseViewModel(view, activity)
     }
 
-    private fun initViewModel(view: View, context: Context) {
-        viewModel.cardActionView.observe(viewLifecycleOwner, { state ->
+    private fun initCardViewModel(view: View, context: Context) {
+        cardViewModel.cardActionView.observe(viewLifecycleOwner, { state ->
             when(state) {
                 is CardActionView.SuccessCall -> {
                     if (!state.cardList.isNullOrEmpty()) {
-                        setAdapter(view, context, state.cardList)
+                        setCardAdapter(view, context, state.cardList)
                     }
                 }
 
@@ -53,10 +60,32 @@ class CardActivity : Fragment() {
         })
     }
 
-   private fun setAdapter(view: View, context: Context, list: List<CardModel>) {
-       rvCards = view.findViewById(R.id.rv_cartoes_list)
-       rvCards.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-       rvCards.adapter = CardAdapter(list)
-   }
+    private fun initPurchaseViewModel(view: View, context: Context) {
+        purchaseViewModel.purchaseActionView.observe(viewLifecycleOwner, { state ->
+            when(state) {
+                is PurchasesActionView.SuccessCall -> {
+                    if (!state.purchaseList.isNullOrEmpty()) {
+                        setPurchaseAdapter(view, context, state.purchaseList)
+                    }
+                }
 
+                is PurchasesActionView.ErrorCall -> {
+                    Toast.makeText(context, state.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun setCardAdapter(view: View, context: Context, list: List<CardModel>) {
+        rvCards = view.findViewById(R.id.rv_cartoes_list)
+        rvCards.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvCards.adapter = CardAdapter(list)
+
+    }
+
+    private fun setPurchaseAdapter(view: View, context: Context, list: List<PurchasesModel>) {
+        rvPurchases = view.findViewById(R.id.rv_purchases_list)
+        rvPurchases.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvPurchases.adapter = PurchasesAdapter(list)
+    }
 }
