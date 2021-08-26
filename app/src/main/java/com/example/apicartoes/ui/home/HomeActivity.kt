@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.apicartoes.R
-import com.example.apicartoes.ui.cards.CardActivity
+import com.example.apicartoes.ui.cards.CardFragment
 import com.example.apicartoes.ui.splash.SplashScreenActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initFragment() {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_fragment, CardActivity.newInstance())
+            replace(R.id.fl_fragment, CardFragment.newInstance(this@HomeActivity))
             commit()
         }
     }

@@ -17,6 +17,7 @@
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/activity_lista_cartoes.xml" value="0.1" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/activity_login.xml" value="0.2507204610951009" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/activity_purchase_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/activity_splash_screen.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/item_card_list.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/item_lista_cartoes.xml" value="0.49230769230769234" />
@@ -24,7 +25,9 @@
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/layout_card_list.xml" value="0.25" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/layout_lista_cartoes.xml" value="0.25" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/layout_purchase_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/navbar_card_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/navbar_login.xml" value="0.20625" />
+        <entry key="..\:/Users/Chaos/AndroidStudioProjects/api-cartoes/app/src/main/res/layout/navbar_purchase_list.xml" value="0.37864583333333335" />
       </map>
     </option>
   </component>

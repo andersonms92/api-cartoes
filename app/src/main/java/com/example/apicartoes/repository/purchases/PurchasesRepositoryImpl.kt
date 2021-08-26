@@ -10,13 +10,14 @@ import retrofit2.Response
 var purchaseFilter: String = "1"
 
 class PurchasesRepositoryImpl(
-    private val api: MockApi
+    private val api: MockApi,
+    private var purchaseListFilter: String = purchaseFilter
 ) : PurchasesRepository {
     override suspend fun getDataApiPurchases(
         onSuccess: (List<PurchasesModel>?) -> Unit,
         onError: (String) -> Unit
     ) {
-        val returnApi = api.getDataCompras(purchaseFilter)
+        val returnApi = api.getDataCompras(purchaseListFilter)
 
         returnApi.enqueue(object : Callback<List<PurchasesModel>> {
             override fun onResponse(

@@ -3,14 +3,16 @@ package com.example.apicartoes.ui.cards
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
 import com.example.apicartoes.data.model.CardModel
+import com.example.apicartoes.repository.purchases.purchaseFilter
+import com.example.apicartoes.utils.ChangeFragment.navigationFragment
 
 class CardAdapter(
+    private val contextActivity: FragmentActivity,
     private val list: List<CardModel>
 ) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardAdapter.CardViewHolder {
@@ -42,9 +44,26 @@ class CardAdapter(
                 cardSecurytiCode.text = cards.code
 
                 itemView.setOnClickListener {
-                    Toast.makeText(itemView.context, "teste", Toast.LENGTH_SHORT).show()
+                    purchaseFilter = cards.idCartao
+                    onClick(itemView, contextActivity)
                 }
 
         }
+    }
+
+    private fun onClick(itemView: View, contextActivity: FragmentActivity) {
+        itemView.setOnClickListener {
+
+            navigationFragment(
+                contextActivity,
+                "PURCHASE_LIST",
+                R.id.fl_fragment
+            )
+
+        }
+    }
+
+    companion object {
+        fun newInstance(contextActivity: FragmentActivity) = CardFragment(contextActivity)
     }
 }
