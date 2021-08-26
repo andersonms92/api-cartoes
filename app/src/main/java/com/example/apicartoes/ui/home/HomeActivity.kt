@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         viewModel.init()
-        viewModel.logoutStatus.observe(this, { state ->
+        viewModel.logoutStatus.observe(this) { state ->
             when(state) {
                 is HomeViewAction.LogoutSuccess -> {
                     startActivity(Intent(this, SplashScreenActivity::class.java))
@@ -48,6 +48,6 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this, state.error, Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 }

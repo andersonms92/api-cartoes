@@ -1,6 +1,7 @@
 package com.example.apicartoes.ui.cards
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apicartoes.R
 import com.example.apicartoes.data.model.CardModel
+import com.example.apicartoes.ui.home.HomeViewAction
+import com.example.apicartoes.ui.home.HomeViewModel
+import com.example.apicartoes.ui.splash.SplashScreenActivity
 import com.example.apicartoes.utils.ChangeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -62,7 +66,8 @@ class CardFragment(private val contextActivity: FragmentActivity) : Fragment() {
 
     private fun setClick() {
         btnBack.setOnClickListener {
-            requireActivity().finish()
+            activity?.finish()
+
         }
     }
 
@@ -75,6 +80,4 @@ class CardFragment(private val contextActivity: FragmentActivity) : Fragment() {
         rvCards.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvCards.adapter = CardAdapter(contextActivity, list)
     }
-
-
 }

@@ -21,6 +21,10 @@ class CardAdapter(
         return CardViewHolder(view)
     }
 
+    companion object {
+        fun newInstance(contextActivity: FragmentActivity) = CardFragment(contextActivity)
+    }
+
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         holder.bind(list[position])
     }
@@ -53,17 +57,11 @@ class CardAdapter(
 
     private fun onClick(itemView: View, contextActivity: FragmentActivity) {
         itemView.setOnClickListener {
-
             navigationFragment(
                 contextActivity,
                 "PURCHASE_LIST",
                 R.id.fl_fragment
             )
-
         }
-    }
-
-    companion object {
-        fun newInstance(contextActivity: FragmentActivity) = CardFragment(contextActivity)
     }
 }
