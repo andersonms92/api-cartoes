@@ -16,6 +16,5 @@ val retrofitModule = module{
             .baseUrl(Constants.API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
     }
 }
